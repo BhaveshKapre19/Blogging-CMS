@@ -23,11 +23,7 @@ if (isset($_POST['create_post'])) {
 
     $add_Post_qry = mysqli_query($connection,$uploade_query);
 }
-?>
-
-
-
-
+?> 
 
 <form method="post" action="" enctype="multipart/form-data">
 	<div class="form-group">
