@@ -14,14 +14,12 @@ if (isset($_POST['create_post'])) {
 	$post_date = date('d-m-y');
 	$post_comment_count = 1;
 
-	move_uploaded_file($post_image_temp, "../image/".$post_image);
 
-    $uploade_query ="INSERT INTO posts (post_category_id , post_title , post_author, post_date, post_image, post_content, post_tags, post_comment_count, post_status) VALUES ";
-
-    $uploade_query .="({$post_category_id},'{$post_title}','{$post_author}',now(),'{$post_image}','{$post_content}','{$post_tags}','{$post_comment_count}','{$post_status}')";
-
-
+    $uploade_query = "INSERT INTO `posts` (`post_category_id`, `post_title`, `post_author`, `post_date`, `post_image`, `post_content`, `post_tags`, `post_comment_count`, `post_status`) VALUES ('$post_category_id', '$post_title','$post_author', CURRENT_DATE(), '$post_image', '$post_content', '$post_tags', '$post_comment_count', '$post_status');";
     $add_Post_qry = mysqli_query($connection,$uploade_query);
+
+
+	move_uploaded_file($post_image_temp, "../image/".$post_image);
 }
 ?> 
 
@@ -36,7 +34,7 @@ if (isset($_POST['create_post'])) {
 	</div>
 	<div class="form-group">
 		<label for="author">Post Author</label>
-		<input type="text" name="author" class="form-control">
+		<input type="text" name="author" class="form-control" value="Admin">
 	</div>
 	<div class="form-group">
 		<label for="post_status">Post Status </label>
