@@ -13,20 +13,20 @@
               <small>Author Name</small>
             </h1>
 			<?php
-			if ($_GET['source']){
+			if (isset($_GET['source'])){
 				$source = $_GET['source'];
-			}
-			switch ($source) {
-			 	case 'Add':
-			 		// code...
-			 	    include 'include/add_post.php';
-			 		break;
-			 	
-			 	default:
-			 		// code...
-			 	    include 'include/view_all_post.php';
-			 		break;
-			 } 
+      }else {
+        $source = '';
+      }
+      switch ($source) {
+          case 'add':
+              include 'include/add_post.php';
+            break;
+          
+          default:
+              include 'include/view_all_post.php';
+            break;
+      }
 			?>
           </div>
         </div>

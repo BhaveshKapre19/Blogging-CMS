@@ -38,8 +38,17 @@
 				<td><?php echo $post_tags; ?></td>
 				<td><?php echo $post_comment_count; ?></td>
 				<td><?php echo $post_date; ?></td>
+				<td><a href="posts.php?delete=<?php echo $post_id; ?>" class="text-danger">DELETE</a></td>
 			</tr>
 		<?php
+		}
+
+		if (isset($_GET['delete'])) {
+			$delete_post_id = $_GET['delete'];
+
+			$delete_query = "delete from posts where post_id = {$delete_post_id}";
+			$execute_qry = mysqli_query($connection,$delete_query);
+			header("location:posts.php");
 		}
 		?>
 		<!-- <tr>
