@@ -38,6 +38,7 @@
 				<td><?php echo $post_tags; ?></td>
 				<td><?php echo $post_comment_count; ?></td>
 				<td><?php echo $post_date; ?></td>
+				<td><a href="posts.php?source=edit_post&p_id=<?php echo $post_id; ?>" class="text-primary">EDIT</a></td>
 				<td><a href="posts.php?delete=<?php echo $post_id; ?>" class="text-danger">DELETE</a></td>
 			</tr>
 		<?php
