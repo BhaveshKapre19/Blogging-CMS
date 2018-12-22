@@ -27,12 +27,19 @@
 				$post_tags=$row['post_tags'];
 				$post_comment_count=$row['post_comment_count'];
 				$post_date=$row['post_date'];
+
+				$cat_id_qry = "select * from categories where cat_id = '$post_category_id'";
+				$sel_cat_qry = mysqli_query($connection,$cat_id_qry);
+				while ($cat_catch = mysqli_fetch_assoc($sel_cat_qry)) {
+				    $cat_catch_id = $cat_catch['cat_id'];
+				    $cat_catch_title = $cat_catch['cat_title'];
+				}
 		?>
 			<tr>
 				<td><?php echo $post_id; ?></td>
 				<td><?php echo $post_author; ?></td>
 				<td><?php echo $post_title; ?></td>
-				<td><?php echo $post_category_id; ?></td>
+				<td><?php echo $cat_catch_title; ?></td>
 				<td><?php echo $post_status; ?></td>
 				<td><img src='../image/<?php echo $post_image; ?>' alt="image" width='100'></td>
 				<td><?php echo $post_tags; ?></td>
