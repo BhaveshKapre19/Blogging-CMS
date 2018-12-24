@@ -29,9 +29,13 @@
                                   $sel_all_cat_qry_sidebar = mysqli_query($connection,$query);
                                   while ($row = mysqli_fetch_assoc($sel_all_cat_qry_sidebar))
                                   {
-                                        $cat_title=$row['cat_title'];
-                                        echo "<li><a href='#'>{$cat_title}</a></li>";
-                                   } 
+                                    $cat_id=$row['cat_id'];
+                                    $cat_title=$row['cat_title'];
+                                    ?>
+                                    <li><a href='category.php?cat_id=<?php echo $cat_id; ?>'><?php echo $cat_title ?></a></li>
+                                    <?php
+                                  }
+                                   
                                 ?>
                                 <!-- <li><a href="#">Category Name</a>
                                 </li>
