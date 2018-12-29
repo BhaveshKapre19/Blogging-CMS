@@ -13,7 +13,7 @@
             <div class="col-md-8">
 
                 <?php 
-                $query = "select * from posts";
+                $query = "select * from posts where post_status = 'Published'";
                 $sel_all_post = mysqli_query($connection,$query);
                 while ($row = mysqli_fetch_assoc($sel_all_post)) {
                     $post_id = $row['post_id'];

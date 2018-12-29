@@ -24,8 +24,10 @@
                     $post_author = $row['post_author'];
                     $post_date = $row['post_date'];
                     $post_image = $row['post_image'];
-                    $post_content = $row['post_content']; ?>
-
+                    $post_content = $row['post_content'];
+                    $post_comment_count = $row['post_comment_count'];
+                    ?>
+                            
                     <h1 class="page-header">
                         Page Heading
                     <small>Secondary Text</small>
@@ -58,6 +60,10 @@
                           $the_insert_commentQry = "INSERT INTO comments (comment_post_id, comment_author, comment_email, comment_content, comment_status, comment_date) VALUES (' $get_post_id', '$comment_author', '$comment_email', '$comment_content', 'Unapproved', CURRENT_DATE());";
 
                           $running_the = mysqli_query($connection,$the_insert_commentQry);
+
+                          $qry_to_inc_cc = "UPDATE posts SET post_comment_count = post_comment_count+1   WHERE post_id = $get_post_id;" ;
+
+                          $update_comment_count = mysqli_query($connection,$qry_to_inc_cc);
                       } 
                      ?> 
 
