@@ -12,7 +12,6 @@ if (isset($_POST['create_post'])) {
 	$post_tags = $_POST['post_tags'];
 	$post_content = $_POST['post_content'];
 	$post_date = date('d-m-y');
-	$post_comment_count = 0;
 
 
     $uploade_query = "INSERT INTO `posts` (`post_category_id`, `post_title`, `post_author`, `post_date`, `post_image`, `post_content`, `post_tags`,`post_status`) VALUES ('$post_category_id', '$post_title','$post_author', CURRENT_DATE(), '$post_image', '$post_content', '$post_tags','$post_status');";
@@ -30,7 +29,21 @@ if (isset($_POST['create_post'])) {
 	</div>
 	<div class="form-group">
 		<label for="post_category_id">Post Category</label>
-		<input type="text" name="post_category_id" class="form-control">
+		<select name="post_category_id" id="post_category">
+			<?php
+			 $query = "select * from categories";
+			 $sel_all_cat_qry = mysqli_query($connection,$query);
+			 confirm($sel_all_cat_qry);
+			 while ($row = mysqli_fetch_assoc($sel_all_cat_qry))
+			 {
+			 	$cat_id = $row['cat_id'];
+			   	$cat_title=$row['cat_title'];
+			   	?>
+			   	<option value="<?php echo $cat_id; ?>"><?php echo $cat_title; ?></option>
+			   	<?php
+			 } 
+			?>
+		</select>
 	</div>
 	<div class="form-group">
 		<label for="author">Post Author</label>

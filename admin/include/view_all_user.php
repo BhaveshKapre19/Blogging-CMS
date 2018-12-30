@@ -2,77 +2,79 @@
 	<thead>
 		<tr>
 			<th>Id</th>
-			<th>Author</th>
-			<th>Comment</th>
+			<th>Username</th>
+			<th>Firstname</th>
+			<th>Lastname</th>
 			<th>Email</th>
-			<th>Status</th>
-			<th>In Response To</th>
-			<th>Date</th>
-			<th>Approve</th>
-			<th>Unapprove</th>
+			<th>Role</th>
+			<th>Edit</th>
+			<th>Make Admin</th>
+			<th>Make Subscriber</th>
 			<th>Delete</th>
 		</tr>
 	</thead>
 	<tbody>
 		<?php
-			$query = "select * from comments";
-			$sel_all_comments_qry = mysqli_query($connection,$query);
-			while ($row = mysqli_fetch_assoc($sel_all_comments_qry))
+			$query = "select * from users";
+			$sel_all_users_qry = mysqli_query($connection,$query);
+			while ($row = mysqli_fetch_assoc($sel_all_users_qry))
 			{
-				$comment_id = $row['comment_id'];
-				$comment_author=$row['comment_author'];
-				$comment_post_id=$row['comment_post_id'];
-				$comment_email=$row['comment_email'];
-				$comment_status=$row['comment_status'];
-				$comment_content=$row['comment_content'];
-				$comment_date=$row['comment_date'];
+				$user_id = $row['user_id'];
+				$username=$row['username'];
+				$user_firstname=$row['user_firstname'];
+				$user_lastname=$row['user_lastname'];
+				$user_email=$row['user_email'];
+				$user_role=$row['role'];
 
-				$post_id_qry = "select * from posts where post_id = '$comment_post_id'";
-				$sel_post_qry = mysqli_query($connection,$post_id_qry);
-				while ($post_catch = mysqli_fetch_assoc($sel_post_qry)) {
-				    $post_catch_id = $post_catch['post_id'];
-				    $post_catch_title = $post_catch['post_title'];
-				}
+				// $post_id_qry = "select * from posts where post_id = '$user_id'";
+				// $sel_post_qry = mysqli_query($connection,$post_id_qry);
+				// while ($post_catch = mysqli_fetch_assoc($sel_post_qry)) {
+				//     $post_catch_id = $post_catch['post_id'];
+				//     $post_catch_title = $post_catch['post_title'];
+				// }
 		?>
 			<tr>
-				<td><?php echo $comment_id; ?></td>
-				<td><?php echo $comment_author; ?></td>
-				<td><?php echo $comment_content; ?></td>
-				<td><?php echo $comment_email; ?></td>
-				<td><?php echo $comment_status; ?></td>
-				<td><a href="../post.php?post_id=<?php echo $post_catch_id ?>"><?php echo $post_catch_title; ?></a></td>
-				<td><?php echo $comment_date; ?></td>
-				<td><a href="comments.php?approved=<?php echo $comment_id; ?>" class="text-primary">Approved</a></td>
-				<td><a href="comments.php?unapproved=<?php echo $comment_id; ?>" class="text-danger">Unapproved</a></td>
-				<td><a href="comments.php?delete=<?php echo $comment_id; ?>" class="text-danger">DELETE</a></td>
+				<td><?php echo $user_id; ?></td>
+				<td><?php echo $username; ?></td>
+				<td><?php echo $user_firstname; ?></td>
+				<td><?php echo $user_lastname; ?></td>
+				<td><?php echo $user_email; ?></td>
+				<td><?php echo $user_role; ?></td>
+
+
+ 				<td><a href="users.php?source=edit_user&u_id=<?php echo $user_id ?>">Edit</a></td>
+
+				<td><a href="users.php?change_admin=<?php echo $user_id; ?>" class="text-primary">Change To Admin</a></td>
+				<td><a href="users.php?change_subscriber=<?php echo $user_id; ?>" class="text-danger">Changed To Subscriber</a></td>
+				<td><a href="users.php?delete=<?php echo $user_id; ?>" class="text-danger">DELETE</a></td>
 			</tr>
 		<?php
 		}
 
 		if (isset($_GET['delete'])) {
-			$delete_comment_id = $_GET['delete'];
+			$delete_user_id = $_GET['delete'];
 
-			$delete_query = "delete from comments where comment_id = {$delete_comment_id}";
+			$delete_query = "delete from users where user_id = {$delete_user_id}";
 			$execute_qry = mysqli_query($connection,$delete_query);
-			header("location:comments.php");
+			header("location:users.php");
 		}
 
-		if (isset($_GET['approved'])) {
-			$approved_comment_id = $_GET['approved'];
-			$approved_comment = "Approved";
+		if (isset($_GET['change_admin'])) {
+			$user_id = $_GET['change_admin'];
+			$user_role = "Admin";
 
-			$approved_qry = "UPDATE comments SET comment_status = '$approved_comment' WHERE comment_id= $approved_comment_id;";
-			$execute_qry = mysqli_query($connection,$approved_qry);
-			header("location:comments.php");
+			$role_qry = "UPDATE users SET role = '$user_role' WHERE user_id= $user_id;";
+			$execute_qry = mysqli_query($connection,$role_qry);
+			header("location:users.php");
 		}
 
-		if (isset($_GET['unapproved'])) {
-			$unapproved_comment_id = $_GET['unapproved'];
-			$unapproved_comment = "Unapproved";
+		if (isset($_GET['change_subscriber'])) {
+			$user_id = $_GET['change_subscriber'];
+			$user_role = "subscriber";
 
-			$unapproved_qry = "UPDATE comments SET comment_status = '$unapproved_comment' WHERE comment_id= $unapproved_comment_id;";
+			$unapproved_qry = "UPDATE users SET role = '$user_role' WHERE user_id= $user_id;";
 			$execute_qry = mysqli_query($connection,$unapproved_qry);
-			header("location:comments.php");
+			header("location:users.php");
 		}
 		?>
 		<!-- <tr>
