@@ -23,19 +23,15 @@
                         $cat_title=$row['cat_title'];
                         echo "<li><a href='#'>{$cat_title}</a></li>";
                      }
+
+                     if (isset($_SESSION['user_role'])) {
+                       if (isset($_GET['post_id'])) {
+                         $post_id_A = $_GET['post_id'];?>
+                         <li><a href='admin/posts.php?source=edit_post&p_id=<?php echo $post_id_A; ?>'>Edit Post</a></li>
+                         <?php
+                       }
+                      }
                     ?>
-
-
-                  <!--   <li>
-                      <a href="#">About</a>
-                  </li>
-                  <li>
-                      <a href="#">Services</a>
-                  </li>
-                  <li>
-                      <a href="#">Contact</a>
-                  </li> -->
-
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

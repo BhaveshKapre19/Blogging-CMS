@@ -45,7 +45,6 @@
                     <img class="img-responsive" src="image/<?php echo $post_image ?>" alt="">
                     <hr>
                     <p><?php echo $post_content; ?></p>
-                    <a class="btn btn-primary" href="post.php?post_id_to_get_the_url_by_somrthing=$post_id">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
                     <hr>
           <?php } ?>

@@ -51,7 +51,10 @@ if (isset($_POST['create_post'])) {
 	</div>
 	<div class="form-group">
 		<label for="post_status">Post Status </label>
-		<input type="text" name="post_status" class="form-control">
+		<select name="post_status" id="">
+			<option value="Draft">Draft</option>
+			<option value="Published">Published</option>
+		</select>
 	</div>
 	<div class="form-group">
 		<label for="post_image">Post Image</label>
@@ -63,7 +66,7 @@ if (isset($_POST['create_post'])) {
 	</div>
 	<div class="form-group">
 		<label for="post_content">Post Content</label>
-		<textarea name="post_content" class="form-control" id="" cols="30" rows="10"></textarea>
+		<textarea name="post_content" class="form-control" id="editor" cols="30" rows="10"></textarea>
 	</div>
 	<div class="form-group">
 		<input type="submit" value="Publish Post" name="create_post" class=" btn btn-primary">

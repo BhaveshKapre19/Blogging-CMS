@@ -1,6 +1,48 @@
+<?php 
+if (isset($_POST['checkBoxArray'])) {
+	foreach ($_POST['checkBoxArray'] as $checkBoxValue_id) {
+	 $bulkOption = $_POST['bulk_options'];
+	 switch ($bulkOption) {
+	 	case 'Published':
+	 	 $qry_pub = "UPDATE posts SET post_status = 'Published' WHERE post_id = $checkBoxValue_id";
+	 	 $update_Qry = mysqli_query($connection,$qry_pub); 
+	 	 confirm($update_Qry);
+	 	break;
+
+	 	case 'Draft':
+	 	 $qry_dra = "UPDATE posts SET post_status = 'Draft' WHERE post_id = $checkBoxValue_id";
+	 	 $update_Qry = mysqli_query($connection,$qry_dra); 
+	 	break;
+
+	 	case 'Delete':
+	 	 $qry_del = "delete from posts where post_id = $checkBoxValue_id";
+	 	 $update_Qry = mysqli_query($connection,$qry_del); 
+	 	break;
+	 	
+	 }
+	}
+}
+?>
+
+
+
+<form action="" method="post">
 <table class="table table-bordered table-hover">
+	<div id="bulkOptionContainer" class="col-xs-4" style="padding: 0px;">
+		<select name="bulk_options" id="" class="form-control">
+			<option value="">SELECT OPTIONS</option>
+			<option value="Published">PUBLISHED</option>
+			<option value="Draft">DRAFT</option>
+			<option value="Delete">DELETE</option>
+		</select>
+	</div>
+	<div class="col-xs-4">
+		<input type="submit" name="submit" class="btn btn-success" value="Apply">
+		<a href="posts.php?source=add" class="btn btn-primary">Add Post</a>
+	</div><br><br><br>
 	<thead>
 		<tr>
+			<th><input type="checkbox" id="selectAllBoxs"></th>
 			<th>Id</th>
 			<th>Author</th>
 			<th>Title</th>
@@ -10,6 +52,8 @@
 			<th>Tags</th>
 			<th>Comments</th>
 			<th>Date</th>
+			<th>Edit</th>
+			<th>Delete</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -36,6 +80,7 @@
 				}
 		?>
 			<tr>
+				<td><input type="checkbox" class="checkbox" name="checkBoxArray[]" value="<?php echo $post_id; ?>"></td>
 				<td><?php echo $post_id; ?></td>
 				<td><?php echo $post_author; ?></td>
 				<td><?php echo $post_title; ?></td>
@@ -59,16 +104,24 @@
 			header("location:posts.php");
 		}
 		?>
-		<!-- <tr>
-				<td>10</td>
-				<td>Bhavesh Kapre</td>
-				<td>Python Hello</td>
-				<td>Python</td>
-				<td>Published</td>
-				<td>image</td>
-				<td>Bk,Python,bhavesh</td>
-				<td>20</td>
-				<td>22/11/2018</td>
-		</tr> -->
+		<script>
+			$(document).ready(function() {
+				$('#selectAllBoxs').click(function(event) {
+				/* Act on the event */
+					console.log("Clicked");
+					if(this.checked){
+						$('.checkbox').each(function() {
+						this.checked = true;
+						});
+					}
+					else{
+						$('.checkbox').each(function() {
+						this.checked = false;
+						});
+					}
+				});
+			});
+		</script>
 	</tbody>
 </table>
+</form>

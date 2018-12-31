@@ -17,6 +17,8 @@ if (isset($_POST['add_user'])) {
     $add_user_qry = mysqli_query($connection,$addUser_query);
     confirm($add_user_qry);
 
+    echo '<h4>User Created : <a href="users.php">User Created</a></h4>';
+
 	// move_uploaded_file($user_image_temp, "../image/".$user_image);
 }
 ?> 

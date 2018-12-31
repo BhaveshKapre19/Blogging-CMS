@@ -25,20 +25,20 @@ if (isset($_POST['update_post'])) {
 	$post_category_id = $_POST['post_category_id'];
 	$post_status = $_POST['post_status'];
 
-
 	$post_image = $_FILES['post_image']['name'];
 	$post_image_temp = $_FILES['post_image']['tmp_name'];
 
 	$post_tags = $_POST['post_tags'];
 	$post_content = $_POST['post_content'];
-	$post_coment_count = 2;
 
-	$qry_update ="UPDATE posts SET post_category_id ='$post_category_id', post_title='$post_title',post_author= '$post_author',post_date=now(),post_image='$post_image',post_content='$post_content', post_tags='$post_tags',post_comment_count='$post_coment_count',post_status='$post_status' WHERE post_id  = 3;";
+	$qry_update ="UPDATE posts SET post_category_id ='$post_category_id', post_title='$post_title',post_author= '$post_author',post_date=now(),post_image='$post_image',post_content='$post_content', post_tags='$post_tags',post_status='$post_status' WHERE post_id  = $post_id;";
 
     $qry_update_1 = mysqli_query($connection,$qry_update);
 
 
 	move_uploaded_file($post_image_temp, "../image/".$post_image);
+
+	echo '<h4 class="bg-success">Post Updated : <a href="../post.php?post_id='.$post_id.'">View Post</a>&nbsp;Or&nbsp;<a href="posts.php">Edit More Posts</a></h4>';
 }
 ?>
 
@@ -74,7 +74,21 @@ if (isset($_POST['update_post'])) {
 	</div>
 	<div class="form-group">
 		<label for="post_status">Post Status </label>
-		<input type="text" name="post_status" class="form-control" value="<?php echo $post_status; ?>">
+		<select name="post_status" id="">
+			<option value="<?php echo $post_status; ?>"><?php echo $post_status; ?></option>
+			<?php
+			if ($post_status == 'Draft') {
+			 	?>
+			 	<option value="Published">Published</option>
+			 	<?php
+			} 
+			else{
+				?>
+				<option value="Draft">Draft</option>
+				<?php
+			}
+			?>
+		</select>
 	</div>
 	<div class="form-group">
 		<img src="../image/<?php echo $post_image; ?>" alt="" width="100">
@@ -86,7 +100,7 @@ if (isset($_POST['update_post'])) {
 	</div>
 	<div class="form-group">
 		<label for="post_content">Post Content</label>
-		<textarea name="post_content" class="form-control" id="" cols="30" rows="10"><?php echo $post_tags; ?>
+		<textarea name="post_content" class="form-control" id="editor" cols="30" rows="10"><?php echo $post_content; ?>
 			
 		</textarea>
 	</div>
