@@ -37,7 +37,7 @@ if (isset($_POST['edit_user'])) {
 	$user_email = $_POST['user_email'];
 
 
-    $addUser_query = "UPDATE users SET username = '$user_firstname', user_password = '$user_password', user_firstname = '$user_firstname', user_lastname = '$user_lastname', user_email = '$user_email', role = '$user_role' WHERE user_id = $the_user_id";
+    $addUser_query = "UPDATE users SET username = '$username', user_password = '$user_password', user_firstname = '$user_firstname', user_lastname = '$user_lastname', user_email = '$user_email', role = '$user_role' WHERE user_id = $the_user_id";
     $add_user_qry = mysqli_query($connection,$addUser_query);
     confirm($add_user_qry);
 
