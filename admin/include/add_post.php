@@ -19,6 +19,10 @@ if (isset($_POST['create_post'])) {
     confirm($add_Post_qry);
 
 	move_uploaded_file($post_image_temp, "../image/".$post_image);
+
+	$post_id = mysqli_insert_id($connection);
+
+	echo '<h4 class="bg-success">Post Created : <a href="../post.php?post_id='.$post_id.'">View Post</a>&nbsp;Or&nbsp;<a href="posts.php">Edit More Posts</a></h4>';
 }
 ?> 
 

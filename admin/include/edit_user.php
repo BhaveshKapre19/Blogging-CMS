@@ -29,15 +29,20 @@ if (isset($_POST['edit_user'])) {
 	$username = $_POST['username'];
 	$user_password = $_POST['user_password'];
 	$user_role = $_POST['user_role'];
-
+    $user_email = $_POST['user_email'];
 
 	// $user_image = $_FILES['user_image']['name'];
 	// $user_image_temp = $_FILES['user_image']['tmp_name'];
+    $query_salt = "select randSalt from users";
+    $exe_qry = mysqli_query($connection,$query_salt);
+    $row = mysqli_fetch_array($exe_qry);
+    $salt = $row['randSalt'];
 
-	$user_email = $_POST['user_email'];
+    $hashed_password = crypt($user_password,$salt);
+	
 
 
-    $addUser_query = "UPDATE users SET username = '$username', user_password = '$user_password', user_firstname = '$user_firstname', user_lastname = '$user_lastname', user_email = '$user_email', role = '$user_role' WHERE user_id = $the_user_id";
+    $addUser_query = "UPDATE users SET username = '$username', user_password = '$hashed_password', user_firstname = '$user_firstname', user_lastname = '$user_lastname', user_email = '$user_email', role = '$user_role' WHERE user_id = $the_user_id";
     $add_user_qry = mysqli_query($connection,$addUser_query);
     confirm($add_user_qry);
 

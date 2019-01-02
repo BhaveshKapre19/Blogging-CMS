@@ -35,14 +35,14 @@
 
                     <!-- First Blog Post -->
                     <h2>
-                        <a href="post.php?post_id_to_get_the_url_by_somrthing=<?php echo $post_id; ?>"><?php echo $post_title; ?></a>
+                        <a href="author_post.php?author=<?php echo $post_author; ?>&post_id=<?php echo $post_id; ?>"><?php echo $post_title; ?></a>
                     </h2>
                     <p class="lead">
                         by <a href="index.php"><?php echo $post_author; ?></a>
                     </p>
                     <p><span class="glyphicon glyphicon-time"></span> <?php echo $post_date; ?></p>
                     <hr>
-                    <img class="img-responsive" src="image/<?php echo $post_image ?>" alt="">
+                    <img class="img-responsive" src="image/<?php echo $post_image; ?>" alt="">
                     <hr>
                     <p><?php echo $post_content; ?></p>
 
@@ -51,11 +51,11 @@
           <!-- Blog Comments -->
                      <?php
                      if (isset($_POST['create_comment'])) {
-                          $get_post_id = $_GET['post_id'];
-                          $comment_author = $_POST['comment_author'];
-                          $comment_email = $_POST['comment_email'];
-                          $comment_content = $_POST['comment_content'];
-
+                        $get_post_id = $_GET['post_id'];
+                        $comment_author = $_POST['comment_author'];
+                        $comment_email = $_POST['comment_email'];
+                        $comment_content = $_POST['comment_content'];
+                        if (!empty($comment_author) && !empty($comment_author) && !empty($comment_author)) {
                           $the_insert_commentQry = "INSERT INTO comments (comment_post_id, comment_author, comment_email, comment_content, comment_status, comment_date) VALUES (' $get_post_id', '$comment_author', '$comment_email', '$comment_content', 'Unapproved', CURRENT_DATE());";
 
                           $running_the = mysqli_query($connection,$the_insert_commentQry);
@@ -63,6 +63,10 @@
                           $qry_to_inc_cc = "UPDATE posts SET post_comment_count = post_comment_count+1   WHERE post_id = $get_post_id;" ;
 
                           $update_comment_count = mysqli_query($connection,$qry_to_inc_cc);
+                        }
+                        else {
+                          ?><script>alert('fields Cannot be Empty');</script><?php
+                        }
                       } 
                      ?> 
 
@@ -73,15 +77,15 @@
                     <form role="form" method="post">
                         <div class="form-group">
                             <label for="Author">Author</label>
-                            <input type="text" class="form-control" name="comment_author">
+                            <input type="text" class="form-control" name="comment_author" required="">
                         </div>
                         <div class="form-group">
                             <label for="email">email</label>
-                            <input type="email" class="form-control" name="comment_email">
+                            <input type="email" class="form-control" name="comment_email" required="">
                         </div>
                         <div class="form-group">
                             <label for="Comment">Your Comment</label>
-                            <textarea class="form-control" rows="3" name="comment_content"></textarea>
+                            <textarea class="form-control" rows="3" name="comment_content" required=""></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary" name="create_comment">Submit</button>
                     </form>

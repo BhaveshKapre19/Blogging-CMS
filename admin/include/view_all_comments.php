@@ -40,7 +40,7 @@
 				<td><?php echo $comment_content; ?></td>
 				<td><?php echo $comment_email; ?></td>
 				<td><?php echo $comment_status; ?></td>
-				<td><a href="../post.php?post_id=<?php echo $post_catch_id ?>"><?php echo $post_catch_title; ?></a></td>
+				<td><a href="../post.php?post_id=<?php echo $post_catch_id;?>"><?php echo "abc"; ?></a></td>
 				<td><?php echo $comment_date; ?></td>
 				<td><a href="comments.php?approved=<?php echo $comment_id; ?>" class="text-primary">Approved</a></td>
 				<td><a href="comments.php?unapproved=<?php echo $comment_id; ?>" class="text-danger">Unapproved</a></td>

@@ -13,22 +13,18 @@
     <script src="js/scripts.js"></script>
 
     <script>
-		$(document).ready(function() {
-			$('#selectAllBoxs').click(function(event) {
-			/* Act on the event */
-				console.log("Clicked");
-				if(this.checked){
-					$('.checkbox').each(function() {
-					this.checked = true;
-					});
-				}
-				else{
-					$('.checkbox').each(function() {
-					this.checked = false;
-					});
-				}
-			});
-		});
+		var div_box= "<div id='load-screen'><div id='loading'></div></div>";
+        $("body").prepend(div_box);
+        $('#load-screen').delay(700).fadeOut(600, function() {
+            $(this).remove();
+        });
+        // $(window).on('load',function(){
+        //     var div_box= "<div id='load-screen'><div id='loading'></div></div>";
+        //     $("body").prepend(div_box);
+        //     $('#load-screen').delay(70).fadeOut(600, function() {
+        //         $(this).remove();
+        //     });
+        // });
 	</script>
 
 </body>
