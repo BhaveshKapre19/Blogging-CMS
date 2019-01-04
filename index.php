@@ -11,9 +11,27 @@
 
             <!-- Blog Entries Column -->
             <div class="col-md-8">
-
+               
                 <?php 
-                $query = "select * from posts where post_status = 'Published' order by post_id DESC";
+                if (isset($_GET['page'])) {
+                  $page = $_GET['page'];
+                }else {
+                 $page = "";
+                }
+
+                if ($page == "" || $page == 1) {
+                    $page_1=0;
+                }
+                else {
+                    $page_1 = ($page * 5)-5;
+                }
+        
+                $sel_All_qry = "SELECT * FROM posts";
+                $exeQry = mysqli_query($connection,$sel_All_qry);
+                $rows_count = mysqli_num_rows($exeQry);
+                $rows_count = ceil($rows_count/5);
+
+                $query = "select * from posts where post_status = 'Published' LIMIT $page_1 , 5";
                 $sel_all_post = mysqli_query($connection,$query);
                 while ($row = mysqli_fetch_assoc($sel_all_post)) {
                     $post_id = $row['post_id'];
@@ -54,6 +72,20 @@
         <!-- /.row -->
 
         <hr>
-
+        <div class="text-center">
+        <ul class="pagination text-center">
+            <?php 
+            for($i=1;$i<=$rows_count;$i++)
+            {
+                if ($i == $page) {
+                    echo "<li class='active'><a href='index.php?page={$i}'>{$i}</a></li>";
+                }
+                else{
+                    echo "<li><a href='index.php?page={$i}'>{$i}</a></li>";
+                }
+            }
+            ?>
+        </ul>
+        </div>
         <!-- Footer -->
         <?php include 'include/footer.php'; ?>

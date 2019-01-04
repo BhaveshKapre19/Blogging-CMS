@@ -16,6 +16,7 @@
 <!-- Message Coade  -->
 <!-- Notification code -->
 <!-- Notification Code-->
+                <li><a href="">Users Online <?php echo UsersOnline(); ?></a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> 
                         <?php 

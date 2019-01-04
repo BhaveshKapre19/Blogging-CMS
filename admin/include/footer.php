@@ -13,20 +13,8 @@
     <script src="js/scripts.js"></script>
 
     <script>
-		var div_box= "<div id='load-screen'><div id='loading'></div></div>";
-        $("body").prepend(div_box);
-        $('#load-screen').delay(700).fadeOut(600, function() {
-            $(this).remove();
-        });
-        // $(window).on('load',function(){
-        //     var div_box= "<div id='load-screen'><div id='loading'></div></div>";
-        //     $("body").prepend(div_box);
-        //     $('#load-screen').delay(70).fadeOut(600, function() {
-        //         $(this).remove();
-        //     });
-        // });
-	</script>
-
+        CKEDITOR.replace( 'editor1' );
+    </script>
 </body>
 
 </html>
