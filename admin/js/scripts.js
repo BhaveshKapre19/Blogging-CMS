@@ -1,3 +1,7 @@
+CKEDITOR.replace( 'editor1', {
+	filebrowserBrowseUrl: 'http://localhost/Cms%20Blogger/admin/ckfinder/ckfinder.html',
+	filebrowserUploadUrl: 'http://localhost/Cms%20Blogger/admin/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files'
+} );
 $(document).ready(function() {
 	$('#selectAllBoxs').click(function(event) {
 	/* Act on the event */
