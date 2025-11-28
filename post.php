@@ -28,10 +28,10 @@
                     $post_comment_count = $row['post_comment_count'];
                     ?>
                             
-                    <h1 class="page-header">
+                    <!-- <h1 class="page-header">
                         Page Heading
                     <small>Secondary Text</small>
-                    </h1>
+                    </h1> -->
 
                     <!-- First Blog Post -->
                     <h2>
@@ -100,7 +100,7 @@
 
 
                 <?php 
-                 $qry_sel_com = "select * from comments where comment_post_id = '$get_post_id' and comment_status = 'Approved' order by comment_id desc";
+                 $qry_sel_com = "select * from comments where comment_post_id = ".$_GET["post_id"]." and comment_status = 'Approved' ";
 
                  $exe_qry = mysqli_query($connection,$qry_sel_com);
 

@@ -10,7 +10,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php">Home Page</a>
+                <a class="navbar-brand" href="/blogger">Home Page</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -21,7 +21,8 @@
                      $sel_all_cat_qry = mysqli_query($connection,$query);
                      while ($row = mysqli_fetch_assoc($sel_all_cat_qry)) {
                         $cat_title=$row['cat_title'];
-                        echo "<li><a href='#'>{$cat_title}</a></li>";
+                        $cat_id = $row['cat_id'];
+                        echo "<li><a href='category.php?cat_id=$cat_id'>{$cat_title}</a></li>";
                      }
 
                      if (isset($_SESSION['user_role'])) {
@@ -32,7 +33,9 @@
                        }
                       }
                     ?>
-                    <li><a href="registration.php">Register</a></li>
+                    <?php if(isset($_SESSION['user'])) { ?>
+                        <li><a href="http://localhost/blogger/registration.php">Register</a></li>
+                    <?php } ?>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

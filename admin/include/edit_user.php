@@ -33,12 +33,12 @@ if (isset($_POST['edit_user'])) {
 
 	// $user_image = $_FILES['user_image']['name'];
 	// $user_image_temp = $_FILES['user_image']['tmp_name'];
-    $query_salt = "select randSalt from users";
-    $exe_qry = mysqli_query($connection,$query_salt);
-    $row = mysqli_fetch_array($exe_qry);
-    $salt = $row['randSalt'];
+    // $query_salt = "select randSalt from users";
+    // $exe_qry = mysqli_query($connection,$query_salt);
+    // $row = mysqli_fetch_array($exe_qry);
+    // $salt = $row['randSalt'];
 
-    $hashed_password = crypt($user_password,$salt);
+    $hashed_password = password_hash($user_password,PASSWORD_BCRYPT,array('cost' => 12));
 	
 
 
@@ -88,7 +88,7 @@ if (isset($_POST['edit_user'])) {
 	</div>
 	<div class="form-group">
 		<label for="user_content">Password</label>
-		<input type="password" name="user_password" class="form-control" value="<?php echo $user_password; ?>">
+		<input type="password" name="user_password" class="form-control">
 	</div>
 	<div class="form-group">
 		<input type="submit" value="Edit User" name="edit_user" class="btn btn-primary">

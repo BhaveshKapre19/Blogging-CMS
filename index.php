@@ -31,7 +31,7 @@
                 $rows_count = mysqli_num_rows($exeQry);
                 $rows_count = ceil($rows_count/5);
 
-                $query = "select * from posts where post_status = 'Published' LIMIT $page_1 , 5";
+                $query = "select * from posts where post_status = 'Published' order by post_id DESC LIMIT $page_1 , 5";
                 $sel_all_post = mysqli_query($connection,$query);
                 while ($row = mysqli_fetch_assoc($sel_all_post)) {
                     $post_id = $row['post_id'];
@@ -42,8 +42,8 @@
                     $post_content = substr($row['post_content'],0,100); ?>
 
                     <h1 class="page-header">
-                        Page Heading
-                    <small>Secondary Text</small>
+                        Blog Home
+                    <small>Posts</small>
                     </h1>
 
                     <!-- First Blog Post -->

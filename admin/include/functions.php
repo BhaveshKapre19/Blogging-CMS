@@ -61,12 +61,12 @@ function showallCategories(){
       <td><?php echo "{$cat_title}" ?></td>
       <td>
         <?php 
-          echo "<a href='http://localhost/Cms%20Blogger/admin/categories.php?delete={$cat_id}' class='text-danger'>Delete</a>"; 
+          echo "<a href='http://localhost/blogger/admin/categories.php?delete={$cat_id}' class='text-danger'>Delete</a>"; 
         ?>
       </td>
       <td>
         <?php 
-          echo "<a href='http://localhost/Cms%20Blogger/admin/categories.php?edit={$cat_id}' class='text-primary'>Edit</a>"; 
+          echo "<a href='http://localhost/blogger/admin/categories.php?edit={$cat_id}' class='text-primary'>Edit</a>"; 
         ?>
       </td>
     </tr>

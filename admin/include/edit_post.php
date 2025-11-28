@@ -61,9 +61,15 @@ if (isset($_POST['update_post'])) {
 			 {
 			 	$cat_id = $row['cat_id'];
 			   	$cat_title=$row['cat_title'];
+			   	if ($cat_id==$post_category_id) {
+			   	?>
+			   	<option value="<?php echo $cat_id; ?>" selected><?php echo $cat_title; ?></option>
+			   	<?php
+			   	}else{
 			   	?>
 			   	<option value="<?php echo $cat_id; ?>"><?php echo $cat_title; ?></option>
 			   	<?php
+			   }
 			 } 
 			?>
 		</select>
@@ -100,7 +106,7 @@ if (isset($_POST['update_post'])) {
 	</div>
 	<div class="form-group">
 		<label for="post_content">Post Content</label>
-		<textarea name="post_content" class="form-control" id="editor" cols="30" rows="10"><?php echo $post_content; ?>
+		<textarea name="post_content" class="form-control" id="editor1" cols="30" rows="10"><?php echo $post_content; ?>
 			
 		</textarea>
 	</div>

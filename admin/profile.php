@@ -23,6 +23,13 @@ if (isset($_POST['update_user'])) {
   $user_firstname = $_POST['user_firstname'];
   $user_lastname = $_POST['user_lastname'];
   $username = $_POST['username'];
+  if($user_password == $_POST['user_password']){
+    $user_password1 = $user_password;
+  }
+  else{
+    $user_password1 = $_POST['user_password'];
+    $user_password1 = password_hash($user_password,PASSWORD_BCRYPT,array('cost' => 12));
+  }
   $user_password = $_POST['user_password'];
   $user_role = $_POST['user_role'];
 
@@ -33,7 +40,8 @@ if (isset($_POST['update_user'])) {
   $user_email = $_POST['user_email'];
 
 
-    $addUser_query = "UPDATE users SET username = '$username', user_password = '$user_password', user_firstname = '$user_firstname', user_lastname = '$user_lastname', user_email = '$user_email', role = '$user_role' WHERE user_id = $user_id";
+
+    $addUser_query = "UPDATE users SET username = '$username', user_password = '$user_password1', user_firstname = '$user_firstname', user_lastname = '$user_lastname', user_email = '$user_email', role = '$user_role' WHERE user_id = $user_id";
     $add_user_qry = mysqli_query($connection,$addUser_query);
     confirm($add_user_qry);
 

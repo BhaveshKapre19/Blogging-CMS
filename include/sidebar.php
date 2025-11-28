@@ -18,23 +18,24 @@
                     <!-- /.input-group -->
                 </div>
 
-
-                <!-- Blog login Well -->
-                <div class="well">
-                    <h4>Blog Login</h4>
-                    <form method="post" action="include/login.php">
-                        <div class="form-group">
-                            <input type="text" name="username" class="form-control" placeholder="UserName">
-                        </div>
-                        <div class="input-group">
-                            <input type="password" name="password" class="form-control" placeholder="Password">
-                            <span class="input-group-btn">
-                                <button class="btn btn-primary" name="login" type="submit">Submit</button>
-                            </span>
-                        </div>
-                    </form> <!-- form login --> 
-                    <!-- /.input-group -->
-                </div>
+                <?php if(isset($_SESSION['user'])) { ?>
+                    <!-- Blog login Well -->
+                    <div class="well">
+                        <h4>Blog Login</h4>
+                        <form method="post" action="include/login.php">
+                            <div class="form-group">
+                                <input type="text" name="username" class="form-control" placeholder="UserName">
+                            </div>
+                            <div class="input-group">
+                                <input type="password" name="password" class="form-control" placeholder="Password">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-primary" name="login" type="submit">Submit</button>
+                                </span>
+                            </div>
+                        </form> <!-- form login --> 
+                        <!-- /.input-group -->
+                    </div>
+                <?php } ?>
 
                 <!-- Blog Categories Well -->
                 <div class="well">

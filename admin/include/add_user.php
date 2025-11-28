@@ -12,6 +12,8 @@ if (isset($_POST['add_user'])) {
 
 	$user_email = $_POST['user_email'];
 
+	$user_password = password_hash($user_password,PASSWORD_BCRYPT,array('cost' => 12));
+
 
     $addUser_query = "INSERT INTO users (username, user_password, user_firstname, user_lastname, user_email,role) VALUES ('$username', '$user_password', '$user_firstname', '$user_lastname', '$user_email','$user_role');";
     $add_user_qry = mysqli_query($connection,$addUser_query);
