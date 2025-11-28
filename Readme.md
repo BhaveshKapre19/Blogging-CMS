@@ -1,7 +1,7 @@
 
 ---
 
-# 🌟 **README 2 — Blogging CMS (Core PHP + MySQL + MVC)**
+# 🌟 **Blogging CMS (Core PHP + MySQL + MVC)**
 
 ```md
 # Blogging CMS (PHP + MySQL + MVC)
