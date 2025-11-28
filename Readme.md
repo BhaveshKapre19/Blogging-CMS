@@ -1,4 +1,4 @@
-# Blogging CMS (PHP + MySQL + MVC)
+# Blogging CMS (PHP + MySQL)
 
 A full blogging **Content Management System** (CMS) built from scratch using **Core PHP and MySQL**.  
 This project includes an admin panel, user management, categories, posts, comments, and a modern blog interface.
